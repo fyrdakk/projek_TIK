@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Pembelajaran - Media Digital</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            background: #000;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background: #fff;
+            margin: auto;
+            padding: 0;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 10px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .close {
+            color: #000;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Media Pembelajaran Digital Berbasis Internet</h1>
+    <p class="kelompok">Kelompok 2</p>
+    <p class="anggota">
+        Muhammad Yuhda Umama - Khalifan Sadri - Siska Anzani - Martin Jonathan Hutagaol
+    </p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="video.html" class="active">Video Pembelajaran</a></li>
+        <li><a href="kuis.html">Kuis Interaktif</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="video-pembelajaran">
+        <h2>Video Pembelajaran</h2>
+
+        <div class="video-gallery">
+
+            <!-- Materi 1 -->
+            <div class="video-card">
+                <h3>Materi 1: Judul Video</h3>
+                <button class="openModalBtn" data-video="https://www.youtube.com/embed/550jf69Me0g">
+                    ▶ Tonton Video
+                </button>
+                <p>Deskripsi materi video pertama.</p>
+            </div>
+
+            <!-- Materi 2 -->
+            <div class="video-card">
+                <h3>Materi 2: Judul Video</h3>
+                <video controls>
+                    <source src="video2.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <p>Deskripsi materi video kedua.</p>
+            </div>
+
+            <!-- Materi 3 -->
+            <div class="video-card">
+                <h3>Materi 3: Judul Video</h3>
+                <video controls>
+                    <source src="video3.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <p>Deskripsi materi video ketiga.</p>
+            </div>
+
+            <!-- Materi 4 -->
+            <div class="video-card">
+                <h3>Materi 4: Judul Video</h3>
+                <video controls>
+                    <source src="video4.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <p>Deskripsi materi video keempat.</p>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 - Kelompok 2 | Tugas Project TIK dalam Pendidikan</p>
+</footer>
+
+
+<div id="videoModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <iframe id="videoFrame" width="100%" height="400" 
+            src="" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+    var modal = document.getElementById("videoModal");
+    var iframe = document.getElementById("videoFrame");
+
+    var buttons = document.querySelectorAll(".openModalBtn");
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", function () {
+            var videoURL = this.getAttribute("data-video");
+            iframe.src = videoURL;
+            modal.style.display = "block";
+        });
+    });
+
+    document.querySelector(".close").onclick = function () {
+        modal.style.display = "none";
+        iframe.src = "";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            iframe.src = "";
+        }
+    }
+</script>
+
+</body>
+</html>
